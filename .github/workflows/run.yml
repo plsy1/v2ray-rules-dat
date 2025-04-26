@@ -101,8 +101,6 @@ jobs:
           cat proxy.txt >> temp-proxy.txt
           cat direct.txt >> temp-direct.txt
           cat reject.txt >> temp-reject.txt
-          cat pcdn.txt >> temp-reject.txt
-
       - name: Sort and generate redundant lists
         run: |
           cat temp-proxy.txt | sort --ignore-case -u > proxy-list-with-redundant
@@ -143,7 +141,9 @@ jobs:
       - name: Add `full`, `regexp` and `keyword` type of rules back into "cn", "geolocation-!cn" and "category-ads-all" list
         run: |
           [ -f "direct-reserve.txt" ] && cat direct-reserve.txt >> ./community/data/cn
+          [ -f "direct-append.txt" ] && cat direct-append.txt >> ./community/data/cn
           [ -f "proxy-reserve.txt" ] && cat proxy-reserve.txt >> ./community/data/geolocation-\!cn
+          [ -f "proxy-append.txt" ] && cat proxy-append.txt >> ./community/data/geolocation-\!cn
           [ -f "reject-reserve.txt" ] && cat reject-reserve.txt >> ./community/data/category-ads-all
           cp ./community/data/cn direct-list.txt
           cp ./community/data/geolocation-\!cn proxy-list.txt
