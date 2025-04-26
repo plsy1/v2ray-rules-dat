@@ -101,6 +101,7 @@ jobs:
           cat proxy.txt >> temp-proxy.txt
           cat direct.txt >> temp-direct.txt
           cat reject.txt >> temp-reject.txt
+          cat pcdn.txt >> temp-reject.txt
 
       - name: Sort and generate redundant lists
         run: |
