@@ -167,6 +167,8 @@ jobs:
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > ./community/data/win-extra
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > win-extra.txt
 
+          cp douyin.txt ./community/data/douyin
+
       - name: Build geosite.dat file
         run: |
           cd custom || exit 1
