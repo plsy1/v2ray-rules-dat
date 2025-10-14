@@ -1,3 +1,11 @@
+## Changes
+
+- Add `geosite:douyin`
+
+- Add `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockqxlite.conf` to `geosite:category-ads-all`
+
+See direct.txt and reject.txt in the hidden branch for other changes.
+
 ## Structure of data
 
 All data are under `data` directory. Each file in the directory represents a sub-list of domains, named by the file name. File content is in the following format.
