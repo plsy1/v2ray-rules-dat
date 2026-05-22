@@ -136,15 +136,15 @@ jobs:
           sort ./direct-list-deleted-unsort > ./direct-list-deleted-sort
           sort ./proxy-list-deleted-unsort > ./proxy-list-deleted-sort
           sort ./reject-list-deleted-unsort > ./reject-list-deleted-sort
-          comm -13 ./direct-list-deleted-sort ./direct-list-with-redundant > ./direct-list-without-redundant
-          comm -13 ./proxy-list-deleted-sort ./proxy-list-with-redundant > ./proxy-list-without-redundant
-          comm -13 ./reject-list-deleted-sort ./reject-list-with-redundant > ./reject-list-without-redundant
+          python3 -c "import sys; r=set(l.strip().lower() for l in open(sys.argv[1])); [print(l, end='') for l in open(sys.argv[2]) if l.strip().lower() not in r]" ./direct-list-deleted-sort ./direct-list-with-redundant > ./direct-list-without-redundant
+          python3 -c "import sys; r=set(l.strip().lower() for l in open(sys.argv[1])); [print(l, end='') for l in open(sys.argv[2]) if l.strip().lower() not in r]" ./proxy-list-deleted-sort ./proxy-list-with-redundant > ./proxy-list-without-redundant
+          python3 -c "import sys; r=set(l.strip().lower() for l in open(sys.argv[1])); [print(l, end='') for l in open(sys.argv[2]) if l.strip().lower() not in r]" ./reject-list-deleted-sort ./reject-list-with-redundant > ./reject-list-without-redundant
 
       - name: Remove domains from "need-to-remove" lists in "hidden" branch
         run: |
-          comm -13 ./direct-need-to-remove.txt ./direct-list-without-redundant > temp-cn.txt
-          comm -13 ./proxy-need-to-remove.txt ./proxy-list-without-redundant > temp-geolocation-\!cn.txt
-          comm -13 ./reject-need-to-remove.txt ./reject-list-without-redundant > temp-category-ads-all.txt
+          python3 -c "import sys; r=set(l.strip().lower() for l in open(sys.argv[1])); [print(l, end='') for l in open(sys.argv[2]) if l.strip().lower() not in r]" ./direct-need-to-remove.txt ./direct-list-without-redundant > temp-cn.txt
+          python3 -c "import sys; r=set(l.strip().lower() for l in open(sys.argv[1])); [print(l, end='') for l in open(sys.argv[2]) if l.strip().lower() not in r]" ./proxy-need-to-remove.txt ./proxy-list-without-redundant > temp-geolocation-\!cn.txt
+          python3 -c "import sys; r=set(l.strip().lower() for l in open(sys.argv[1])); [print(l, end='') for l in open(sys.argv[2]) if l.strip().lower() not in r]" ./reject-need-to-remove.txt ./reject-list-without-redundant > temp-category-ads-all.txt
 
       - name: Write lists to data directory
         run: |
